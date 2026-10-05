@@ -70,9 +70,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Form Submission Logic ---
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
+        const attributionParams = [
+            'gclid',
+            'gbraid',
+            'wbraid',
+            'utm_source',
+            'utm_medium',
+            'utm_campaign',
+            'utm_term',
+            'utm_content'
+        ];
+        const pageParams = new URLSearchParams(window.location.search);
+
+        attributionParams.forEach((param) => {
+            const field = contactForm.elements.namedItem(param);
+            if (field) field.value = pageParams.get(param) || '';
+        });
+
+        const landingPageField = contactForm.elements.namedItem('landing_page');
+        if (landingPageField) {
+            landingPageField.value = `${window.location.pathname}${window.location.search}`;
+        }
+
+        const propertyPhotoField = contactForm.elements.namedItem('photo');
+        if (propertyPhotoField) {
+            propertyPhotoField.addEventListener('change', () => {
+                const file = propertyPhotoField.files && propertyPhotoField.files[0];
+                const isTooLarge = file && file.size > 8 * 1024 * 1024;
+                propertyPhotoField.setCustomValidity(isTooLarge ? 'Please choose an image smaller than 8 MB.' : '');
+                if (isTooLarge) propertyPhotoField.reportValidity();
+            });
+        }
+
         contactForm.addEventListener('submit', function(e) {
-            // This is a simple handler for Netlify's form success message.
-            // Netlify handles the actual submission, we just show a success UI.
+            if (contactForm.getAttribute('name') === 'holiday-estimate') {
+                sessionStorage.setItem('wlHolidayEstimateSubmitted', String(Date.now()));
+            }
+
+            // Netlify handles the actual submission. Existing pages can still
+            // reveal their inline confirmation UI where those elements exist.
             setTimeout(() => {
                 const wrapper = document.getElementById('contact-form-wrapper');
                 const successMsg = document.getElementById('form-success-message');
@@ -169,22 +205,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileServicesDropdown = document.getElementById('mobile-services-dropdown');
     const mobileServicesArrow = document.getElementById('mobile-services-arrow');
 
-    mobileMenuButton.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.contains('hidden');
-        mobileMenu.classList.toggle('hidden');
-        document.body.classList.toggle('body-no-scroll', !isHidden);
-        mobileMenuButton.setAttribute('aria-expanded', !isHidden);
-        if (!isHidden) {
-            // Find first focusable element to focus on
-            const firstFocusable = mobileMenu.querySelector('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])');
-            if(firstFocusable) firstFocusable.focus();
-        }
-    });
+    if (mobileMenu && mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            document.body.classList.toggle('body-no-scroll', !isHidden);
+            mobileMenuButton.setAttribute('aria-expanded', !isHidden);
+            if (!isHidden) {
+                // Find first focusable element to focus on
+                const firstFocusable = mobileMenu.querySelector('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if(firstFocusable) firstFocusable.focus();
+            }
+        });
+    }
     
-    mobileServicesToggle.addEventListener('click', () => {
-        mobileServicesDropdown.classList.toggle('hidden');
-        mobileServicesArrow.classList.toggle('rotate-180');
-    });
+    if (mobileServicesToggle && mobileServicesDropdown && mobileServicesArrow) {
+        mobileServicesToggle.addEventListener('click', () => {
+            mobileServicesDropdown.classList.toggle('hidden');
+            mobileServicesArrow.classList.toggle('rotate-180');
+        });
+    }
 
     // Close mobile menu when a nav link is clicked
     if(mobileMenu) {
@@ -196,6 +236,19 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Secondary analytics only: actual Ads call conversions are counted after
+    // a 60-second call through Google's forwarding-number measurement.
+    document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+        link.addEventListener('click', () => {
+            if (typeof gtag === 'function') {
+                gtag('event', 'phone_click', {
+                    event_category: 'lead',
+                    call_location: link.dataset.callLocation || 'unspecified'
+                });
+            }
+        });
+    });
 
     // --- Sparkle Effect ---
     const sparkleContainer = document.getElementById('sparkle-container');

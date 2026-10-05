@@ -1,0 +1,150 @@
+.wl-holiday-page {
+    --wl-navy: #081628;
+    --wl-navy-soft: #10243b;
+    --wl-ink: #eaf2fb;
+    --wl-gold: #f3c34f;
+    --wl-line: rgba(148, 163, 184, 0.24);
+    background:
+        radial-gradient(circle at 82% 12%, rgba(243, 195, 79, 0.11), transparent 28rem),
+        var(--wl-navy);
+}
+
+.skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 10000;
+    transform: translateY(-180%);
+    background: #fff;
+    color: #081628;
+    padding: .75rem 1rem;
+    border-radius: .25rem;
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+.wl-holiday-hero {
+    min-height: 42rem;
+    display: flex;
+    align-items: end;
+    background:
+        linear-gradient(90deg, rgba(6, 18, 33, .96) 0%, rgba(6, 18, 33, .82) 48%, rgba(6, 18, 33, .35) 100%),
+        url('https://res.cloudinary.com/dvdxbzv6a/image/upload/f_auto,q_auto,w_1800/v1756584703/ChatGPT_Image_Aug_6_2025_06_28_31_PM_fdgk6t.png') center / cover no-repeat;
+}
+
+.wl-eyebrow {
+    margin-bottom: 1rem;
+    color: var(--wl-gold);
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+}
+
+.wl-primary-button,
+.wl-secondary-button {
+    display: inline-flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    padding: .8rem 1.5rem;
+    border-radius: .35rem;
+    font-weight: 700;
+    transition: transform .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.wl-primary-button { background: var(--wl-gold); color: #101820; }
+.wl-primary-button:hover { background: #ffda70; transform: translateY(-2px); }
+.wl-secondary-button { border: 1px solid rgba(255, 255, 255, .58); color: #fff; }
+.wl-secondary-button:hover { border-color: var(--wl-gold); color: var(--wl-gold); transform: translateY(-2px); }
+.wl-primary-button:active,
+.wl-secondary-button:active { transform: translateY(1px); }
+.wl-primary-button:focus-visible,
+.wl-secondary-button:focus-visible,
+.wl-field input:focus-visible,
+.wl-field select:focus-visible,
+.wl-field textarea:focus-visible,
+.wl-faq summary:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.wl-nav-button { min-height: 2.65rem; padding: .55rem 1rem; }
+
+.wl-hero-facts,
+.wl-offer-panel,
+.wl-proof-panel,
+.wl-form-panel,
+.wl-estimate-note {
+    border: 1px solid var(--wl-line);
+    background: rgba(11, 29, 49, .84);
+    box-shadow: 0 24px 70px rgba(0, 8, 20, .3);
+}
+
+.wl-hero-facts { padding: 2rem; backdrop-filter: blur(14px); }
+.wl-hero-facts li { position: relative; padding-left: 1.5rem; }
+.wl-hero-facts li::before { content: '•'; position: absolute; left: 0; color: var(--wl-gold); }
+.wl-offer-panel { padding: 1.75rem; }
+.wl-step-number { margin-bottom: 1rem; color: var(--wl-gold); font-size: .8rem; font-weight: 700; letter-spacing: .16em; }
+.wl-section-contrast { background: rgba(2, 12, 26, .58); border-block: 1px solid rgba(148, 163, 184, .12); }
+
+.wl-process-grid { overflow: hidden; border: 1px solid var(--wl-line); background: var(--wl-line); }
+.wl-process-grid li { min-height: 16rem; padding: 1.75rem; background: #0c1d31; }
+.wl-process-grid span { color: var(--wl-gold); font-size: .76rem; font-weight: 700; letter-spacing: .16em; }
+.wl-process-grid h3 { margin-top: 2.5rem; color: #fff; font-family: 'Playfair Display', serif; font-size: 1.45rem; }
+.wl-process-grid p { margin-top: .7rem; color: #aebed0; line-height: 1.65; }
+
+.wl-project-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 13rem;
+    gap: .75rem;
+}
+.wl-project-grid a { overflow: hidden; background: #10243b; }
+.wl-project-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+.wl-project-grid a:hover img { transform: scale(1.04); }
+.wl-project-feature { grid-column: span 2; grid-row: span 2; }
+
+.wl-proof-panel { padding: 1.75rem; }
+.wl-proof-panel h3 { margin-top: .8rem; color: #fff; font-size: 1.05rem; font-weight: 700; }
+.wl-proof-panel > p:last-child { margin-top: .5rem; color: #aebed0; line-height: 1.65; }
+.wl-form-panel { padding: 1.5rem; }
+.wl-estimate-note { padding: 1.25rem; }
+
+.wl-field { display: grid; gap: .5rem; color: #eaf2fb; font-size: .9rem; font-weight: 600; }
+.wl-field input,
+.wl-field select,
+.wl-field textarea {
+    width: 100%;
+    border: 1px solid rgba(148, 163, 184, .32);
+    border-radius: .25rem;
+    background: rgba(5, 17, 31, .86);
+    color: #fff;
+    padding: .82rem .9rem;
+    font: inherit;
+    font-weight: 400;
+}
+.wl-field textarea { resize: vertical; }
+.wl-field input::placeholder,
+.wl-field textarea::placeholder { color: #8496aa; }
+.wl-field input[type='file'] { padding: .65rem; color: #aebed0; }
+.wl-field input[type='file']::file-selector-button { margin-right: .8rem; border: 0; border-radius: .2rem; background: var(--wl-gold); color: #101820; padding: .55rem .8rem; font-weight: 700; cursor: pointer; }
+
+.wl-faq { padding: 1.5rem 0; }
+.wl-faq summary { display: flex; justify-content: space-between; gap: 1rem; cursor: pointer; color: #fff; font-size: 1.12rem; font-weight: 700; list-style: none; }
+.wl-faq summary::-webkit-details-marker { display: none; }
+.wl-faq summary::after { content: '+'; color: var(--wl-gold); font-size: 1.4rem; line-height: 1; }
+.wl-faq[open] summary::after { content: '−'; }
+.wl-faq p { margin-top: 1rem; max-width: 44rem; color: #aebed0; line-height: 1.7; }
+
+.wl-mobile-cta { position: fixed; z-index: 60; left: .75rem; right: .75rem; bottom: .75rem; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 1px solid rgba(255,255,255,.2); border-radius: .35rem; box-shadow: 0 12px 40px rgba(0,0,0,.48); }
+.wl-mobile-cta a { display: flex; min-height: 3.25rem; align-items: center; justify-content: center; background: var(--wl-gold); color: #101820; font-weight: 700; }
+.wl-mobile-cta a:last-child { background: #10243b; color: #fff; }
+
+@media (max-width: 768px) {
+    .wl-holiday-hero { min-height: auto; background: linear-gradient(rgba(6,18,33,.72), rgba(6,18,33,.96)), url('https://res.cloudinary.com/dvdxbzv6a/image/upload/f_auto,q_auto,w_1000/v1756584703/ChatGPT_Image_Aug_6_2025_06_28_31_PM_fdgk6t.png') center / cover no-repeat; }
+    .wl-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 10rem; }
+    .wl-project-feature { grid-column: span 2; grid-row: span 2; }
+    footer { padding-bottom: 6rem !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

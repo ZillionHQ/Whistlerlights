@@ -1,4 +1,17 @@
 # Netlify Configuration
+# Serve the focused holiday page at the site's existing residential URLs.
+[[redirects]]
+  from = "/residential"
+  to = "/residential-holiday.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/residential.html"
+  to = "/residential-holiday.html"
+  status = 200
+  force = true
+
 # This rule makes URLs like /residential work without needing .html
 [[redirects]]
   from = "/*"

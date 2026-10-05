@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <!-- Google tag (gtag.js) --> 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVZSSVKGF5"></script> 
-    <script> 
-        window.dataLayer = window.dataLayer || []; 
-        function gtag(){dataLayer.push(arguments);} 
-        gtag('js', new Date()); 
-        gtag('config', 'G-EVZSSVKGF5'); 
+    <!-- Google tag (gtag.js): Analytics and Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVZSSVKGF5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-EVZSSVKGF5');
+        gtag('config', 'AW-17649723676');
+
+        const holidayEstimateSubmittedAt = Number(sessionStorage.getItem('wlHolidayEstimateSubmitted'));
+        const holidayEstimateIsFresh = Number.isFinite(holidayEstimateSubmittedAt)
+            && holidayEstimateSubmittedAt > 0
+            && Date.now() - holidayEstimateSubmittedAt < 10 * 60 * 1000;
+
+        if (holidayEstimateIsFresh) {
+            gtag('event', 'conversion', {
+                'send_to': 'AW-17649723676/OAL6CK2Kx5EdEJzSheBB'
+            });
+            gtag('event', 'generate_lead', {
+                'lead_source': 'holiday_estimate_form'
+            });
+            document.documentElement.dataset.holidayEstimateConfirmed = 'true';
+        }
+        sessionStorage.removeItem('wlHolidayEstimateSubmitted');
     </script>
 
     <meta charset="UTF-8">
@@ -50,8 +67,8 @@
             <h1 class="font-heading text-4xl md:text-5xl font-extrabold leading-tight mb-4">
                 Thank You!
             </h1>
-            <p class="text-lg md:text-xl max-w-3xl mb-8 text-gray-200">
-                Your request has been sent successfully. We appreciate you reaching out to Whistler Lights and will be in touch with you within 24 hours to discuss your project.
+            <p id="thank-you-message" class="text-lg md:text-xl max-w-3xl mb-8 text-gray-200">
+                Thank you for reaching out to Whistler Lights. The team will be in touch shortly to discuss your project.
             </p>
             <div>
                 <a href="/" class="bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-yellow-500 transition-all duration-300 shadow-lg">Back to Homepage</a>
@@ -59,6 +76,12 @@
         </div>
     </div>
 
+    <script>
+        const thankYouMessage = document.getElementById('thank-you-message');
+        if (document.documentElement.dataset.holidayEstimateConfirmed === 'true') {
+            thankYouMessage.textContent = 'Your holiday lighting estimate request was sent successfully. The team will be in touch shortly to discuss your property.';
+        }
+    </script>
+
 </body>
 </html>
-
