@@ -10,22 +10,8 @@
         gtag('config', 'G-EVZSSVKGF5');
         gtag('config', 'AW-17649723676');
 
-        const holidayEstimateSubmittedAt = Number(sessionStorage.getItem('wlHolidayEstimateSubmitted'));
-        const holidayEstimateIsFresh = Number.isFinite(holidayEstimateSubmittedAt)
-            && holidayEstimateSubmittedAt > 0
-            && Date.now() - holidayEstimateSubmittedAt < 10 * 60 * 1000;
-
-        if (holidayEstimateIsFresh) {
-            gtag('event', 'conversion', {
-                'send_to': 'AW-17649723676/OAL6CK2Kx5EdEJzSheBB'
-            });
-            gtag('event', 'generate_lead', {
-                'lead_source': 'holiday_estimate_form'
-            });
-            document.documentElement.dataset.holidayEstimateConfirmed = 'true';
-        }
-        sessionStorage.removeItem('wlHolidayEstimateSubmitted');
     </script>
+    <script src="/holiday-measurement.js" defer></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,13 +61,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const thankYouMessage = document.getElementById('thank-you-message');
-        if (document.documentElement.dataset.holidayEstimateConfirmed === 'true') {
-            thankYouMessage.textContent = 'Your holiday lighting estimate request was sent successfully. The team will be in touch shortly to discuss your property.';
-        }
-    </script>
 
 </body>
 </html>

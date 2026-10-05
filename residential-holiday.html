@@ -22,10 +22,8 @@
         gtag('js', new Date());
         gtag('config', 'G-EVZSSVKGF5');
         gtag('config', 'AW-17649723676');
-        gtag('config', 'AW-17649723676/E_LdCLCKx5EdEJzSheBB', {
-            'phone_conversion_number': '604-907-1640'
-        });
     </script>
+    <script src="/holiday-measurement.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,7 +78,7 @@
             </div>
         </section>
 
-        <section class="py-16 md:py-24">
+        <section id="ownership" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
                     <div>
@@ -117,7 +115,7 @@
                     <ol class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-px wl-process-grid">
                         <li><span>01</span><h3>Estimate & design</h3><p>Send property details and a photo. Whistler Lights confirms the scope and design.</p></li>
                         <li><span>02</span><h3>Professional install</h3><p>Mountain-experienced installers handle rooflines, trees, power and timers.</p></li>
-                        <li><span>03</span><h3>Defined support</h3><p>Your estimate explains the maintenance coverage for Whistler-supplied or client-supplied lights.</p></li>
+                        <li><span>03</span><h3>Seasonal support</h3><p>Lights bought through Whistler Lights include free maintenance for the current holiday season through January 1.</p></li>
                         <li><span>04</span><h3>Scheduled takedown</h3><p>The display is carefully removed after the season at the agreed time.</p></li>
                     </ol>
                 </div>
@@ -128,8 +126,8 @@
             <div class="container mx-auto px-6">
                 <div class="max-w-6xl mx-auto">
                     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
-                        <div><p class="wl-eyebrow">Installed across the corridor</p><h2 class="font-heading text-4xl md:text-5xl text-white">Recent residential work</h2></div>
-                        <p class="text-gray-300 max-w-md">Rooflines, evergreens, driveways and custom displays for homes throughout the region.</p>
+                        <div><p class="wl-eyebrow">Residential lighting</p><h2 class="font-heading text-4xl md:text-5xl text-white">Holiday lighting gallery</h2></div>
+                        <p class="text-gray-300 max-w-md">Rooflines, evergreens, driveways and lighting inspiration. The featured home image is illustrative; ask for examples of completed installations.</p>
                     </div>
                     <div class="wl-project-grid" data-gallery="residential">
                         <a href="https://res.cloudinary.com/dvdxbzv6a/image/upload/v1756584703/ChatGPT_Image_Aug_6_2025_06_28_31_PM_fdgk6t.png" class="gallery-item wl-project-feature"><img loading="eager" src="https://res.cloudinary.com/dvdxbzv6a/image/upload/f_auto,q_auto,w_1200/v1756584703/ChatGPT_Image_Aug_6_2025_06_28_31_PM_fdgk6t.png" alt="Warm white lights outlining a modern residential home at dusk."></a>
@@ -142,7 +140,7 @@
             </div>
         </section>
 
-        <section class="py-16 md:py-24 wl-section-contrast">
+        <section id="local-experience" class="py-16 md:py-24 wl-section-contrast">
             <div class="container mx-auto px-6">
                 <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12">
                     <div class="lg:col-span-5">
@@ -195,9 +193,11 @@
                                 <label class="wl-field">Lighting products<select name="light_source" required><option value="">Choose one</option><option value="Purchase through Whistler Lights">I need commercial-grade lights</option><option value="Client supplied">I have my own lights</option><option value="Not sure">I am not sure yet</option></select></label>
                                 <label class="wl-field">Project type<select name="project_scope" required><option value="">Choose one</option><option value="Roofline">Roofline</option><option value="Trees and landscape">Trees and landscape</option><option value="Full property display">Full property display</option><option value="Custom or large property">Custom or large property</option></select></label>
                                 <label class="wl-field sm:col-span-2">Project details <textarea name="project_details" rows="4" placeholder="Tell us what you would like lit, your preferred look and any access considerations."></textarea></label>
-                                <label class="wl-field sm:col-span-2">Property photo <span class="text-gray-400 font-normal">(optional, maximum 8 MB)</span><input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>
+                                <label class="wl-field sm:col-span-2">Property photo <span class="text-gray-400 font-normal">(optional, maximum 7 MB)</span><input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>
                             </div>
                             <button type="submit" class="wl-primary-button w-full mt-6">Request my estimate</button>
+                            <p id="holiday-form-status" class="mt-4 text-sm text-gray-200" role="status" aria-live="polite" tabindex="-1"></p>
+                            <p class="mt-4 text-sm text-gray-400">If adding a photo, show the property's exterior only. Do not include people, documents or other sensitive information.</p>
                             <p class="mt-4 text-sm text-gray-400">By submitting, you agree that Whistler Lights may contact you about this estimate request.</p>
                         </form>
                     </div>
@@ -212,8 +212,9 @@
                     <div class="lg:col-span-8 divide-y divide-slate-700">
                         <details class="wl-faq" open><summary>Can Whistler Lights install lights I already own?</summary><p>Yes. Include details or a photo with your request. The team will confirm whether the products are suitable and explain the applicable maintenance and replacement terms in your estimate.</p></details>
                         <details class="wl-faq"><summary>Can I buy commercial-grade lights through Whistler Lights?</summary><p>Yes. Commercial-grade products supplied as part of your installation are purchased by you and belong to you.</p></details>
-                        <details class="wl-faq"><summary>What does the $625 + tax minimum cover?</summary><p>It is the minimum project charge. Your final estimate depends on the property, access, design, installation scope and materials, and will identify what is included before work begins.</p></details>
-                        <details class="wl-faq"><summary>Is maintenance included?</summary><p>Coverage depends on whether Whistler Lights supplied the products or you supplied your own. The written estimate defines the maintenance, workmanship and product-replacement terms for your project.</p></details>
+                        <details class="wl-faq"><summary>What does the $625 + tax minimum cover?</summary><p>The minimum installation project charge is $625 + tax. Product costs are additional. Your written estimate confirms the design, installation, scheduled takedown and applicable support before work begins.</p></details>
+                        <details class="wl-faq"><summary>Is maintenance included?</summary><p>When you purchase lights through Whistler Lights, free fixes and maintenance are included for the current holiday season through January 1, and the supplied products have a one-year warranty. Client-supplied lights do not include that free maintenance offer; the team will confirm applicable service charges and terms in your estimate.</p></details>
+                        <details class="wl-faq"><summary>Who keeps the lights after takedown?</summary><p>You own the lights you purchase. After takedown, the lights are usually returned to you for storage until the next season.</p></details>
                         <details class="wl-faq"><summary>When should I book?</summary><p>Book as early as possible for the widest choice of installation dates. Whistler Lights installs throughout the holiday period, subject to schedule and property conditions.</p></details>
                     </div>
                 </div>

@@ -9,6 +9,9 @@
         var(--wl-navy);
 }
 
+.wl-holiday-page section[id], #main-content { scroll-margin-top: 6rem; }
+.wl-primary-button:disabled { opacity: .7; cursor: wait; transform: none; }
+
 .skip-link {
     position: fixed;
     left: 1rem;

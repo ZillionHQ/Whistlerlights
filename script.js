@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Form Submission Logic ---
     const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
+    if (contactForm && contactForm.getAttribute('name') !== 'holiday-estimate') {
         const attributionParams = [
             'gclid',
             'gbraid',
@@ -103,10 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         contactForm.addEventListener('submit', function(e) {
-            if (contactForm.getAttribute('name') === 'holiday-estimate') {
-                sessionStorage.setItem('wlHolidayEstimateSubmitted', String(Date.now()));
-            }
-
             // Netlify handles the actual submission. Existing pages can still
             // reveal their inline confirmation UI where those elements exist.
             setTimeout(() => {
