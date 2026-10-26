@@ -158,15 +158,11 @@
 
         <section id="holiday-estimate" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-                    <div class="lg:col-span-5">
+                <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16 items-start wl-estimate-layout">
+                    <div class="lg:col-span-5 wl-estimate-intro">
                         <p class="wl-eyebrow">Booking holiday installations</p>
                         <h2 class="font-heading text-4xl md:text-5xl text-white">Tell us about the property.</h2>
                         <p class="mt-5 text-lg text-gray-300">A property photo helps the team estimate faster. Projects start at $625 + tax, with final pricing confirmed before installation.</p>
-                        <div class="mt-8 wl-estimate-note">
-                            <h3 class="font-semibold text-white">What happens next</h3>
-                            <ol class="mt-3 space-y-2 text-gray-300"><li>1. The team reviews your property and requested look.</li><li>2. You receive a clear scope and estimate.</li><li>3. Installation is scheduled once you approve it.</li></ol>
-                        </div>
                     </div>
                     <div class="lg:col-span-7 wl-form-panel">
                         <form id="contact-form" name="holiday-estimate" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" action="/thank-you">
@@ -189,10 +185,10 @@
                                 <label class="wl-field">Email <input type="email" name="email" autocomplete="email" required></label>
                                 <label class="wl-field">Phone <input type="tel" name="phone" autocomplete="tel" required></label>
                                 <label class="wl-field">Service area<select name="location" required><option value="">Choose an area</option><option value="Whistler">Whistler</option><option value="Squamish">Squamish</option><option value="Pemberton">Pemberton</option><option value="Sea-to-Sky corridor">Sea-to-Sky corridor</option><option value="North Vancouver">North Vancouver</option><option value="West Vancouver">West Vancouver</option><option value="Other">Other</option></select></label>
-                                <label class="wl-field sm:col-span-2">Property address <input type="text" name="property_address" autocomplete="street-address"></label>
+                                <label class="wl-field sm:col-span-2">Property address (optional) <input type="text" name="property_address" autocomplete="street-address"></label>
                                 <label class="wl-field">Lighting products<select name="light_source" required><option value="">Choose one</option><option value="Purchase through Whistler Lights">I need commercial-grade lights</option><option value="Client supplied">I have my own lights</option><option value="Not sure">I am not sure yet</option></select></label>
                                 <label class="wl-field">Project type<select name="project_scope" required><option value="">Choose one</option><option value="Roofline">Roofline</option><option value="Trees and landscape">Trees and landscape</option><option value="Full property display">Full property display</option><option value="Custom or large property">Custom or large property</option></select></label>
-                                <label class="wl-field sm:col-span-2">Project details <textarea name="project_details" rows="4" placeholder="Tell us what you would like lit, your preferred look and any access considerations."></textarea></label>
+                                <label class="wl-field sm:col-span-2">Project details (optional) <textarea name="project_details" rows="4" placeholder="Tell us what you would like lit, your preferred look and any access considerations."></textarea></label>
                                 <label class="wl-field sm:col-span-2">Property photo <span class="text-gray-400 font-normal">(optional, maximum 7 MB)</span><input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>
                             </div>
                             <button type="submit" class="wl-primary-button w-full mt-6">Request my estimate</button>
@@ -200,6 +196,10 @@
                             <p class="mt-4 text-sm text-gray-400">If adding a photo, show the property's exterior only. Do not include people, documents or other sensitive information.</p>
                             <p class="mt-4 text-sm text-gray-400">By submitting, you agree that Whistler Lights may contact you about this estimate request.</p>
                         </form>
+                    </div>
+                    <div class="wl-estimate-note wl-estimate-next">
+                        <h3 class="font-semibold text-white">What happens next</h3>
+                        <ol class="mt-3 space-y-2 text-gray-300"><li>1. The team reviews your property and requested look.</li><li>2. You receive a clear scope and estimate.</li><li>3. Installation is scheduled once you approve it.</li></ol>
                     </div>
                 </div>
             </div>
